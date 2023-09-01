@@ -123,8 +123,8 @@ public class ExternalProcessing {
     public static String getIndexType(File sourcePbfFile) {
         long sourceFileLength = sourcePbfFile.length();
         long maxMemory = Runtime.getRuntime().maxMemory();
-
-        return sourceFileLength>maxMemory ? "dense_file_array" : "sparse_mem_array";
+        return "flex_mem";
+        //return sourceFileLength>maxMemory ? "dense_file_array" : "sparse_mem_array";
     }
 
     private static void runCliCommand(String command, String basePath) throws IOException, InterruptedException {

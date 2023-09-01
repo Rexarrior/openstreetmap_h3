@@ -273,6 +273,9 @@ public class OsmPbfTransformation {
                     @Override
                     public void error() {
                         System.out.println("ERROR in block "+blockNumber);
+			new Exception().printStackTrace(); 
+
+
                     }
                 });
                 blobDecoder.run();
