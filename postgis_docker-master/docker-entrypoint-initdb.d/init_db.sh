@@ -12,7 +12,9 @@ EOSQL
 echo "parallel OSM data loading"
 #https://github.com/docker-library/postgres/blob/master/docker-entrypoint.sh
 
-find /input/sql/ | grep "/.*sql$" | sort | PGHOST= PGHOSTADDR=  parallel psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --no-password --no-psqlrc  --dbname "osmworld" -f
+# find /input/sql/ | grep "/.*sql$" | sort | PGHOST= PGHOSTADDR=  parallel psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --no-password --no-psqlrc  --dbname "osmworld" -f
+find /input/sql/ | grep "/.*sql$" | sort | PGHOST= PGHOSTADDR=  parallel (psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --no-password --no-psqlrc  --dbname "osmworld" -f {} \; && rm {})
+
 
 echo "finish OSM database initialization"
 
