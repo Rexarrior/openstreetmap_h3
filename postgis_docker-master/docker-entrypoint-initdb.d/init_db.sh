@@ -16,7 +16,6 @@ echo "parallel OSM data loading"
 # find /input/sql/ | grep "/.*sql$" | sort | PGHOST= PGHOSTADDR=  parallel (psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --no-password --no-psqlrc  --dbname "osmworld" -f {} \; && rm {})
 input_dir="/input/sql/"
 dbname="osmworld"
-POSTGRES_USER="your_postgres_user_here"
 
 for sql_file in "$input_dir"*.sql; do
     if [ -f "$sql_file" ]; then
