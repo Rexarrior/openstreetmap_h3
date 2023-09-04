@@ -46,11 +46,15 @@ def test():
         delete_files(filenames)
 
 def run(fname):
+    print(f"process file {fname}")
     filenames = extract_tsv_filenames_from_file(fname)
+    print(f"found {len(filenames)}")
     delete_files(filenames)
+    print("process finished")
 
 if __name__ == "__main__":
     # test()
-    run(sys.argv[0])
+    print(f"Run with args {sys.argv[0]}")
+    run(sys.argv[1])
 
 

@@ -19,8 +19,9 @@ dbname="osmworld"
 
 for sql_file in "$input_dir"*.sql; do
     if [ -f "$sql_file" ]; then
+        echo $sql_file
         psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --no-password --no-psqlrc --dbname "$dbname" -f "$sql_file"
-        python3 /docker-entrypoint-initdb.d/rm_connected_tsv.py $sql_file
+        python3 /docker-entrypoint-initdb.d/rm_connected_tsv.py "$sql_file" >> /input/python_log.txt 2>>/input/python_log.txt
     fi
 done
 
